@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.pdm_todoapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.pdm_todoapp"
