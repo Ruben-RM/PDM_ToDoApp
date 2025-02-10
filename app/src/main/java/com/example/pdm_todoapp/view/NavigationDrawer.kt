@@ -12,14 +12,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MyNavigationDrawer(onCloseDrawer: () -> Unit) {
     Column(
-        modifier = Modifier.padding(8.dp))
+        modifier = Modifier.padding(10.dp))
     {
         repeat(5) {
             Text(
                 text = "Opción ${it + 1}",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp)
+                    .padding(vertical = 10.dp)
                     .clickable { onCloseDrawer() }
             )
         }
