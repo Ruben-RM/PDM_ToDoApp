@@ -1,4 +1,4 @@
-package com.example.pdm_todoapp
+package com.example.pdm_todoapp.view
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.app.ActivityCompat.finishAffinity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,15 +28,16 @@ fun MyTopAppBar(onClickDrawer: () -> Unit)
     TopAppBar(
         title = { Text("My To Do App") },
         colors = topAppBarColors(
-            containerColor = Color.LightGray,
-            titleContentColor = Color.Black
+            containerColor = Color.Black,
+            titleContentColor = Color.White
         ),
         navigationIcon = {
             IconButton(onClick = { onClickDrawer() })
             {
                 Icon(Icons.Filled.Menu,
                     contentDescription = "Desc",
-                    tint = Color.Black)
+                    tint = Color.White
+                )
             }
         },
         actions = {
@@ -45,14 +45,16 @@ fun MyTopAppBar(onClickDrawer: () -> Unit)
             {
                 Icon(Icons.Filled.Add,
                     contentDescription = "Desc",
-                    tint = Color.Black)
+                    tint = Color.White
+                )
             }
             Spacer(modifier = Modifier.size(6.dp))
             IconButton(onClick = { activity?.finish() })
             {
                 Icon(Icons.Filled.Close,
                     contentDescription = "Desc",
-                    tint = Color.Black)
+                    tint = Color.White
+                )
             }
         }
     )

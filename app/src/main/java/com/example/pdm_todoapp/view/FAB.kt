@@ -1,4 +1,4 @@
-package com.example.pdm_todoapp
+package com.example.pdm_todoapp.view
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check

@@ -1,4 +1,4 @@
-package com.example.pdm_todoapp
+package com.example.pdm_todoapp.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun MyNavigationDrawer(onCloseDrawer: () -> Unit) {
-    Column(modifier = Modifier.padding(8.dp)) {
+    Column(
+        modifier = Modifier.padding(8.dp))
+    {
         repeat(5) {
             Text(
                 text = "Opción ${it + 1}",

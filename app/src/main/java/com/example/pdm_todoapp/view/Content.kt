@@ -1,4 +1,4 @@
-package com.example.pdm_todoapp
+package com.example.pdm_todoapp.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

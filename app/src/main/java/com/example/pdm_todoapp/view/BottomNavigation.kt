@@ -1,4 +1,4 @@
-package com.example.pdm_todoapp
+package com.example.pdm_todoapp.view
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,8 +21,8 @@ fun MyBotNav() {
     var index by rememberSaveable { mutableIntStateOf(0) }
 
     NavigationBar(
-        containerColor = Color.Red,
-        contentColor = Color.White
+        containerColor = Color.Black,
+        contentColor = Color.White,
     ) {
         NavigationBarItem(
             selected = index == 0,
@@ -32,7 +33,16 @@ fun MyBotNav() {
                     contentDescription = "Home Icon"
                 )
             },
-            label = { Text("Home") }
+            label = { Text("Home") },
+            colors = NavigationBarItemColors(
+                selectedIndicatorColor = Color.White,
+                selectedIconColor = Color.Black,
+                selectedTextColor = Color.White,
+                unselectedIconColor = Color.White,
+                unselectedTextColor = Color.White,
+                disabledIconColor = Color.Transparent,
+                disabledTextColor = Color.White
+            )
         )
         NavigationBarItem(
             selected = index == 1,
@@ -43,7 +53,16 @@ fun MyBotNav() {
                     contentDescription = "Fav Icon"
                 )
             },
-            label = { Text("FAV") }
+            label = { Text("FAV") },
+            colors = NavigationBarItemColors(
+                selectedIndicatorColor = Color.White,
+                selectedIconColor = Color.Black,
+                selectedTextColor = Color.White,
+                unselectedIconColor = Color.White,
+                unselectedTextColor = Color.White,
+                disabledIconColor = Color.Transparent,
+                disabledTextColor = Color.White
+            )
         )
         NavigationBarItem(
             selected = index == 2,
@@ -54,7 +73,16 @@ fun MyBotNav() {
                     contentDescription = "Person Icon"
                 )
             },
-            label = { Text("Person") }
+            label = { Text("Person") },
+            colors = NavigationBarItemColors(
+                selectedIndicatorColor = Color.White,
+                selectedIconColor = Color.Black,
+                selectedTextColor = Color.White,
+                unselectedIconColor = Color.White,
+                unselectedTextColor = Color.White,
+                disabledIconColor = Color.Transparent,
+                disabledTextColor = Color.White
+            )
         )
     }
 }
