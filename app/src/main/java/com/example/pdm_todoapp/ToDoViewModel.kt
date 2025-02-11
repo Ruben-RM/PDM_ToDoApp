@@ -18,6 +18,8 @@ class ToDoViewModel : ViewModel() {
     val description: LiveData<String> = _description
     private var _faved = MutableLiveData<Boolean>()
     val faved: LiveData<Boolean> = _faved
+    private var _prioridad = MutableLiveData<Int>()
+    val prioridad: LiveData<Int> = _prioridad
     private val _isLoginEnabled = MutableLiveData<Boolean>()
     val isLoginEnabled: LiveData<Boolean> = _isLoginEnabled
 
@@ -43,6 +45,11 @@ class ToDoViewModel : ViewModel() {
         _faved.value = faved
     }
 
+    fun onPrioridadChange(prioridad: Int)
+    {
+        _prioridad.value = prioridad
+    }
+
     fun checkAddingEnabled()
     {
         _isLoginEnabled.value = _title.value != "" && _date.value != ""
@@ -53,9 +60,9 @@ class ToDoViewModel : ViewModel() {
         _toDoList.value = ToDoList.getAllToDos().toList()
     }
 
-    fun addToDo(title: String, descripcion: String, date: String, isFaved: Boolean)
+    fun addToDo(title: String, descripcion: String, date: String, isFaved: Boolean, prioridad: Int)
     {
-        ToDoList.addToDo(title, descripcion, date, isFaved)
+        ToDoList.addToDo(title, descripcion, date, isFaved, prioridad)
         getAllToDo()
     }
 

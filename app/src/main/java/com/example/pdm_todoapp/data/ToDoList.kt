@@ -9,14 +9,15 @@ object ToDoList
         return toDoList
     }
 
-    fun addToDo(title: String, descripcion: String, date: String, isFaved: Boolean)
+    fun addToDo(title: String, descripcion: String, date: String, isFaved: Boolean, prioridad: Int)
     {
         toDoList.add(
             ToDo(id = toDoList.size,
                 title = title,
                 descripcion = descripcion,
                 fechaToDo = date,
-                isFaved = isFaved),
+                isFaved = isFaved,
+                prioridad = prioridad),
         )
     }
 

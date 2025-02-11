@@ -5,5 +5,6 @@ data class ToDo(
     var title: String = "",
     var descripcion: String = "",
     var fechaToDo: String,
-    var isFaved: Boolean = false
+    var isFaved: Boolean = false,
+    var prioridad: Int = 0
 )

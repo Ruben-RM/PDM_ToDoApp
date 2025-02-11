@@ -1,7 +1,6 @@
 package com.example.pdm_todoapp.view
 
 import android.widget.Toast
-import androidx.collection.emptyLongSet
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Favorite
@@ -133,6 +133,12 @@ fun ToDoPanel(viewModel:ToDoViewModel, list: List<ToDo>, i: Int)
                     contentDescription = "Desc",
                     tint = Color.Black
                 )
+
+            Icon(
+                Icons.Filled.Add,
+                contentDescription = "Desc",
+                tint = Color.Black
+            )
 
             IconButton(
                 onClick = {

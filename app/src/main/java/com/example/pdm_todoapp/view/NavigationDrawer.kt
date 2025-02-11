@@ -24,6 +24,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderColors
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -49,6 +52,7 @@ import com.example.pdm_todoapp.ToDoViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.roundToInt
 
 @Composable
 fun MyNavigationDrawer(viewModel: ToDoViewModel, onCloseDrawer: () -> Unit)
@@ -57,6 +61,7 @@ fun MyNavigationDrawer(viewModel: ToDoViewModel, onCloseDrawer: () -> Unit)
     val description by viewModel.description.observeAsState("")
     val date by viewModel.date.observeAsState("")
     val faved by viewModel.faved.observeAsState(false)
+    val prioridad by viewModel.prioridad.observeAsState(0)
     val isAddingEnabled by viewModel.isLoginEnabled.observeAsState(false)
 
     Column(
@@ -73,7 +78,9 @@ fun MyNavigationDrawer(viewModel: ToDoViewModel, onCloseDrawer: () -> Unit)
         Spacer(modifier = Modifier.size(16.dp))
         ToDoFaved(faved) { viewModel.onFavedChange(it) }
         Spacer(modifier = Modifier.size(16.dp))
-        AddButton(isAddingEnabled, viewModel, title, description, date, faved)
+        ToDoPrioridad(prioridad) { viewModel.onPrioridadChange(it) }
+        Spacer(modifier = Modifier.size(16.dp))
+        AddButton(isAddingEnabled, viewModel, title, description, date, faved, prioridad)
     }
 }
 
@@ -246,13 +253,39 @@ fun ToDoFaved(faved: Boolean, function: (Boolean) -> Unit)
 }
 
 @Composable
-fun AddButton(isAddingEnable: Boolean, viewModel: ToDoViewModel, title: String, description: String, date: String, faved: Boolean)
+fun ToDoPrioridad(prioridad: Int, function: (Int) -> Unit)
+{
+    Text(
+        text = "Prioridad: ${prioridad}",
+        color = Color.White,
+        fontSize = 20.sp
+    )
+
+    Slider(
+        value = prioridad.toFloat(),
+        onValueChange = {
+            function(it.roundToInt())
+        },
+        valueRange = 0f..3f,
+        steps = 2,
+        colors = SliderDefaults.colors(
+            thumbColor = Color.LightGray,
+            activeTrackColor = Color.LightGray,
+            inactiveTrackColor = Color.DarkGray,
+            activeTickColor = Color.Black,
+            inactiveTickColor = Color.White
+        )
+    )
+}
+
+@Composable
+fun AddButton(isAddingEnable: Boolean, viewModel: ToDoViewModel, title: String, description: String, date: String, faved: Boolean, prioridad: Int)
 {
     val context = LocalContext.current
 
     Button(
         onClick = {
-            viewModel.addToDo(title, description, date, faved)
+            viewModel.addToDo(title, description, date, faved, prioridad)
             Toast.makeText(context, "El ToDo se ha añadido correctamente", Toast.LENGTH_SHORT).show()
                   },
         enabled = isAddingEnable,
