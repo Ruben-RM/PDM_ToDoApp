@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PDM_ToDoAppTheme {
-                ToDoScreen()
+                ToDoScreen(ToDoViewModel())
             }
         }
     }
