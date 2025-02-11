@@ -1,5 +1,6 @@
 package com.example.pdm_todoapp.view
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -246,8 +248,13 @@ fun ToDoFaved(faved: Boolean, function: (Boolean) -> Unit)
 @Composable
 fun AddButton(isAddingEnable: Boolean, viewModel: ToDoViewModel, title: String, description: String, date: String, faved: Boolean)
 {
+    val context = LocalContext.current
+
     Button(
-        onClick = { viewModel.addToDo(title, description, date, faved) },
+        onClick = {
+            viewModel.addToDo(title, description, date, faved)
+            Toast.makeText(context, "El ToDo se ha añadido correctamente", Toast.LENGTH_SHORT).show()
+                  },
         enabled = isAddingEnable,
         modifier = Modifier.fillMaxWidth().padding(8.dp),
         shape = RoundedCornerShape(12.dp),

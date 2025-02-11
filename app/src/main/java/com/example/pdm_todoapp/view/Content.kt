@@ -1,5 +1,6 @@
 package com.example.pdm_todoapp.view
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.pdm_todoapp.ToDoViewModel
@@ -65,6 +67,8 @@ fun ToDoPanel(viewModel:ToDoViewModel, list: List<ToDo>, i: Int)
         Color(0xFFd0fff8.toInt())
     )
 
+    val context = LocalContext.current
+
     Row(
         Modifier
             .fillMaxWidth()
@@ -106,7 +110,10 @@ fun ToDoPanel(viewModel:ToDoViewModel, list: List<ToDo>, i: Int)
                 )
 
             IconButton(
-                onClick = { viewModel.deleteToDo(list.get(i).id) }
+                onClick = {
+                    Toast.makeText(context, "El ToDo se ha eliminado correctamente", Toast.LENGTH_SHORT).show()
+                    viewModel.deleteToDo(list.get(i).id)
+                }
             ){
                 Icon(
                     Icons.Filled.Delete,
