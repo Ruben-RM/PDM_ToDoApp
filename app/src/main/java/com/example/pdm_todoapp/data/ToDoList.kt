@@ -1,7 +1,5 @@
 package com.example.pdm_todoapp.data
 
-import java.time.LocalDate
-
 object ToDoList
 {
     private val toDoList = mutableListOf<ToDo>()
@@ -11,13 +9,13 @@ object ToDoList
         return toDoList
     }
 
-    fun addToDo(title: String, descripcion: String, isFaved: Boolean)
+    fun addToDo(title: String, descripcion: String, date: String, isFaved: Boolean)
     {
         toDoList.add(
             ToDo(id = toDoList.size,
                 title = title,
                 descripcion = descripcion,
-                fechaToDo = LocalDate.of(2024, 1, 1),
+                fechaToDo = date,
                 isFaved = isFaved),
         )
     }

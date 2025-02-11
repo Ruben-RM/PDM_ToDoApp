@@ -6,6 +6,6 @@ data class ToDo(
     var id: Int,
     var title: String = "",
     var descripcion: String = "",
-    var fechaToDo: LocalDate,
+    var fechaToDo: String,
     var isFaved: Boolean = false
 )

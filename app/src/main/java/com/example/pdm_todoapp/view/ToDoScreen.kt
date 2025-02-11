@@ -27,7 +27,7 @@ fun ToDoScreen(viewModel: ToDoViewModel)
                 drawerContainerColor = Color.Black,
                 drawerContentColor = Color.White
             ) {
-                MyNavigationDrawer() { scope.launch { drawerState.close() } }
+                MyNavigationDrawer(viewModel) { scope.launch { drawerState.close() } }
             }
         },
         gesturesEnabled = true

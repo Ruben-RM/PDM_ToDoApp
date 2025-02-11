@@ -41,7 +41,7 @@ fun MyTopAppBar(onClickDrawer: () -> Unit)
             }
         },
         actions = {
-            IconButton(onClick = {})
+            IconButton(onClick = { onClickDrawer() })
             {
                 Icon(Icons.Filled.Add,
                     contentDescription = "Desc",
