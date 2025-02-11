@@ -9,6 +9,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -23,6 +24,7 @@ fun ToDoScreen(viewModel: ToDoViewModel)
     var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     var index by rememberSaveable { mutableIntStateOf(0) }
+    var seeFavs by rememberSaveable { mutableStateOf(false) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -37,13 +39,13 @@ fun ToDoScreen(viewModel: ToDoViewModel)
         gesturesEnabled = true
     ) {
         Scaffold(
-            topBar = { MyTopAppBar { scope.launch { drawerState.open() } } },
+            topBar = { MyTopAppBar(seeFavs, { seeFavs = it }, { scope.launch { drawerState.open() } } ) },
             content = { innerPadding ->
-                MyContent(innerPadding, index, viewModel)
+                MyContent(innerPadding, index, seeFavs, viewModel)
             },
             bottomBar = { MyBotNav(index){ index = it } },
             floatingActionButtonPosition = FabPosition.End,
-            floatingActionButton = { MyFAB() }
+            floatingActionButton = { MyFAB{ scope.launch { drawerState.open() } } }
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.pdm_todoapp.view
 
 import android.widget.Toast
+import androidx.collection.emptyLongSet
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
+fun MyContent(innerPadding: PaddingValues, index: Int, seeFavs: Boolean, viewModel: ToDoViewModel)
 {
     val toDoList by viewModel.toDoList.observeAsState(initial = emptyList())
 
@@ -46,8 +47,12 @@ fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
             when(index)
             {
                 0 -> {
-                    items(list.size) { i ->
-                        ToDoPanel(viewModel, list, i)
+                    val listToUse =
+                        if (seeFavs) { list.filter { it.isFaved } }
+                        else { list }
+
+                    items(listToUse.size) { i ->
+                        ToDoPanel(viewModel, listToUse, i)
                     }
                 }
                 1 -> {
@@ -62,8 +67,13 @@ fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
                         val fecha2 = LocalDate.parse(tarea2.fechaToDo, DateTimeFormatter.ofPattern("dd/MM/yyyy") )
                         fecha1.compareTo(fecha2)
                     }
-                    items(sortedList.size) { i ->
-                        ToDoPanel(viewModel, sortedList, i)
+
+                    val listToUse =
+                        if (seeFavs) { sortedList.filter { it.isFaved } }
+                        else { sortedList }
+
+                    items(listToUse.size) { i ->
+                        ToDoPanel(viewModel, listToUse, i)
                     }
                 }
             }

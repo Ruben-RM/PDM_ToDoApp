@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopAppBar(onClickDrawer: () -> Unit)
+fun MyTopAppBar(seeFavs: Boolean, setSeeFavs: (Boolean) -> Unit, onClickDrawer: () -> Unit)
 {
     val activity = LocalContext.current as? Activity
 
@@ -41,12 +43,18 @@ fun MyTopAppBar(onClickDrawer: () -> Unit)
             }
         },
         actions = {
-            IconButton(onClick = { onClickDrawer() })
+            IconButton(onClick = { setSeeFavs(!seeFavs) })
             {
-                Icon(Icons.Filled.Add,
-                    contentDescription = "Desc",
-                    tint = Color.White
-                )
+                if(seeFavs)
+                    Icon(Icons.Filled.Favorite,
+                        contentDescription = "Desc",
+                        tint = Color.Red
+                    )
+                else
+                    Icon(Icons.Filled.Favorite,
+                        contentDescription = "Desc",
+                        tint = Color.White
+                    )
             }
             Spacer(modifier = Modifier.size(6.dp))
             IconButton(onClick = { activity?.finish() })
