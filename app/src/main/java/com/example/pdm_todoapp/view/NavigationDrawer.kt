@@ -25,7 +25,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderColors
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -76,9 +75,9 @@ fun MyNavigationDrawer(viewModel: ToDoViewModel, onCloseDrawer: () -> Unit)
         Spacer(modifier = Modifier.size(16.dp))
         ToDoDate{ viewModel.onDateChange(it) }
         Spacer(modifier = Modifier.size(16.dp))
-        ToDoFaved(faved) { viewModel.onFavedChange(it) }
-        Spacer(modifier = Modifier.size(16.dp))
         ToDoPrioridad(prioridad) { viewModel.onPrioridadChange(it) }
+        Spacer(modifier = Modifier.size(16.dp))
+        ToDoFaved(faved) { viewModel.onFavedChange(it) }
         Spacer(modifier = Modifier.size(16.dp))
         AddButton(isAddingEnabled, viewModel, title, description, date, faved, prioridad)
     }
@@ -237,7 +236,10 @@ fun ToDoFaved(faved: Boolean, function: (Boolean) -> Unit)
 {
     Row(verticalAlignment = Alignment.CenterVertically)
     {
-        Text("¿Marcar el ToDo como favorito?")
+        Text(
+            text = "¿Marcar el ToDo como favorito?",
+            fontSize = 18.sp
+        )
 
         Checkbox(
             checked = faved,
