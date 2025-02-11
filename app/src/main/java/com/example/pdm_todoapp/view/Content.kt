@@ -41,13 +41,13 @@ fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
         {
             if(index == 0)
                 items(list.size) { i ->
-                    ToDoPanel(list, i)
+                    ToDoPanel(viewModel, list, i)
                 }
             else
             {
                 val filteredList = list.filter{ it.isFaved }
                 items(filteredList.size) { i ->
-                    ToDoPanel(filteredList, i)
+                    ToDoPanel(viewModel, filteredList, i)
                 }
             }
         }
@@ -55,7 +55,7 @@ fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
 }
 
 @Composable
-fun ToDoPanel(list: List<ToDo>, i: Int)
+fun ToDoPanel(viewModel:ToDoViewModel, list: List<ToDo>, i: Int)
 {
     val colors = listOf(
         Color(0xFFffd7d7.toInt()),
@@ -74,7 +74,7 @@ fun ToDoPanel(list: List<ToDo>, i: Int)
         Column(
             modifier = Modifier.weight(.9f)
         ) {
-            Text(text = "ToDo número ${list.get(i).id}: ", color = Color.Black)
+            Text(text = "ToDo número ${list.get(i).id + 1}: ", color = Color.Black)
 
             Text(text = list.get(i).title,
                 color = Color.Black,
@@ -106,7 +106,7 @@ fun ToDoPanel(list: List<ToDo>, i: Int)
                 )
 
             IconButton(
-                onClick = { }
+                onClick = { viewModel.deleteToDo(list.get(i).id) }
             ){
                 Icon(
                     Icons.Filled.Delete,
