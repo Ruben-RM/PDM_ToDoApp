@@ -1,6 +1,7 @@
 package com.example.pdm_todoapp.view
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -52,6 +53,26 @@ fun MyBotNav(index: Int, function: (Int) -> Unit)
                 )
             },
             label = { Text("Ver ToDos FAV") },
+            colors = NavigationBarItemColors(
+                selectedIndicatorColor = Color.White,
+                selectedIconColor = Color.Black,
+                selectedTextColor = Color.White,
+                unselectedIconColor = Color.White,
+                unselectedTextColor = Color.White,
+                disabledIconColor = Color.Transparent,
+                disabledTextColor = Color.White
+            )
+        )
+        NavigationBarItem(
+            selected = index == 2,
+            onClick = { function(2) },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = "Sort by Date"
+                )
+            },
+            label = { Text("Ordena por fecha") },
             colors = NavigationBarItemColors(
                 selectedIndicatorColor = Color.White,
                 selectedIconColor = Color.Black,

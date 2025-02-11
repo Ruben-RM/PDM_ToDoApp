@@ -29,6 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.pdm_todoapp.ToDoViewModel
 import com.example.pdm_todoapp.data.ToDo
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
@@ -41,15 +43,28 @@ fun MyContent(innerPadding: PaddingValues, index: Int, viewModel: ToDoViewModel)
             contentPadding = innerPadding
         )
         {
-            if(index == 0)
-                items(list.size) { i ->
-                    ToDoPanel(viewModel, list, i)
-                }
-            else
+            when(index)
             {
-                val filteredList = list.filter{ it.isFaved }
-                items(filteredList.size) { i ->
-                    ToDoPanel(viewModel, filteredList, i)
+                0 -> {
+                    items(list.size) { i ->
+                        ToDoPanel(viewModel, list, i)
+                    }
+                }
+                1 -> {
+                    val filteredList = list.filter{ it.isFaved }
+                    items(filteredList.size) { i ->
+                        ToDoPanel(viewModel, filteredList, i)
+                    }
+                }
+                2 -> {
+                    val sortedList = list.sortedWith { tarea1, tarea2 ->
+                        val fecha1 = LocalDate.parse(tarea1.fechaToDo, DateTimeFormatter.ofPattern("dd/MM/yyyy") )
+                        val fecha2 = LocalDate.parse(tarea2.fechaToDo, DateTimeFormatter.ofPattern("dd/MM/yyyy") )
+                        fecha1.compareTo(fecha2)
+                    }
+                    items(sortedList.size) { i ->
+                        ToDoPanel(viewModel, sortedList, i)
+                    }
                 }
             }
         }
