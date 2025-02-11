@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 fun MyFAB()
 {
     FloatingActionButton(
-        onClick = { /* fab click handler */ }
+        onClick = {  }
     ) {
         Icon(imageVector = Icons.Default.Check, contentDescription = "FAB Check")
     }

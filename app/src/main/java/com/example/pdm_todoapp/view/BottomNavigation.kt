@@ -2,8 +2,7 @@ package com.example.pdm_todoapp.view
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -17,23 +16,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun MyBotNav() {
-    var index by rememberSaveable { mutableIntStateOf(0) }
-
+fun MyBotNav(index: Int, function: (Int) -> Unit)
+{
     NavigationBar(
         containerColor = Color.Black,
         contentColor = Color.White,
     ) {
         NavigationBarItem(
             selected = index == 0,
-            onClick = { index = 0 },
+            onClick = { function(0) },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Home,
+                    imageVector = Icons.Default.Search,
                     contentDescription = "Home Icon"
                 )
             },
-            label = { Text("Home") },
+            label = { Text("Ver ToDos") },
             colors = NavigationBarItemColors(
                 selectedIndicatorColor = Color.White,
                 selectedIconColor = Color.Black,
@@ -46,34 +44,14 @@ fun MyBotNav() {
         )
         NavigationBarItem(
             selected = index == 1,
-            onClick = { index = 1 },
+            onClick = { function(1) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "Fav Icon"
                 )
             },
-            label = { Text("FAV") },
-            colors = NavigationBarItemColors(
-                selectedIndicatorColor = Color.White,
-                selectedIconColor = Color.Black,
-                selectedTextColor = Color.White,
-                unselectedIconColor = Color.White,
-                unselectedTextColor = Color.White,
-                disabledIconColor = Color.Transparent,
-                disabledTextColor = Color.White
-            )
-        )
-        NavigationBarItem(
-            selected = index == 2,
-            onClick = { index = 2 },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Person Icon"
-                )
-            },
-            label = { Text("Person") },
+            label = { Text("Ver ToDos FAV") },
             colors = NavigationBarItemColors(
                 selectedIndicatorColor = Color.White,
                 selectedIconColor = Color.Black,

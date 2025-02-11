@@ -8,8 +8,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.example.pdm_todoapp.ToDoViewModel
 import kotlinx.coroutines.launch
@@ -19,6 +21,8 @@ fun ToDoScreen(viewModel: ToDoViewModel)
 {
     val scope = rememberCoroutineScope()
     var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+
+    var index by rememberSaveable { mutableIntStateOf(0) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -35,9 +39,9 @@ fun ToDoScreen(viewModel: ToDoViewModel)
         Scaffold(
             topBar = { MyTopAppBar { scope.launch { drawerState.open() } } },
             content = { innerPadding ->
-                MyContent(innerPadding, viewModel)
+                MyContent(innerPadding, index, viewModel)
             },
-            bottomBar = { MyBotNav() },
+            bottomBar = { MyBotNav(index){ index = it } },
             floatingActionButtonPosition = FabPosition.End,
             floatingActionButton = { MyFAB() }
         )

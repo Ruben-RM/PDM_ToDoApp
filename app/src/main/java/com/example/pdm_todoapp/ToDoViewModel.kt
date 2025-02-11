@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pdm_todoapp.data.ToDo
 import com.example.pdm_todoapp.data.ToDoList
-import java.time.LocalDate
 
 class ToDoViewModel : ViewModel() {
     private var _toDoList = MutableLiveData<List<ToDo>>()
